@@ -1,8 +1,8 @@
-# ToDo
+## Issue-tracker
 
 Python/Django practice
 
-## Run project
+### Run project
 
 - Install python (brew/apt install python) /pip included
 - Install virtualenv `pip3 install virtualenv`
@@ -23,3 +23,5 @@ Python/Django practice
 - Initial migration for default apps by django (auth, ...) `./manage.py migrate`
 - Create super user `./manage.py createsuperuser`
 - Create new our django app `./manage.py startapp webapp`
+- Dump data for fixtures `./manage.py dumpdata --indent=2 webapp auth.user > fixtures.json
+`
