@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{ issue.summary }}</h4>
+            <p class="card-text">{{ issue.description }}</p>
+            <small class="text-muted">{{ issue.created_at|date:'d.m.Y' }}</small>
+            <span class="badge badge-secondary">{{ issue.type }}</span>
+            <span class="badge badge-secondary">{{ issue.status }}</span>
+        </div>
+    </div>
+{% endblock %}
