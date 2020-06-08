@@ -4,8 +4,8 @@ from django.db import models
 class Issue(models.Model):
     summary = models.CharField(max_length=100, verbose_name='Summary')
     description = models.TextField(max_length=2000, verbose_name='Description', null=True, blank=True)
-    status = models.ForeignKey('webapp.Status', related_name='status', on_delete=models.PROTECT, verbose_name='Status')
-    type = models.ForeignKey('webapp.Type', related_name='type', on_delete=models.PROTECT, verbose_name='Type')
+    status = models.ForeignKey('webapp.Status', related_name='issues', on_delete=models.PROTECT, verbose_name='Status')
+    type = models.ForeignKey('webapp.Type', related_name='issues', on_delete=models.PROTECT, verbose_name='Type')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
 
     def __str__(self):

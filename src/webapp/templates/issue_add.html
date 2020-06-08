@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Issue {% endblock %}
+
+{% block content %}
+    <h1>Add Issue</h1>
+    <form action="{% url 'issue_add' %}" method="post" novalidate>
+        {% include 'partial/issue_add_update_form.html' %}
+    </form>
+{% endblock %}

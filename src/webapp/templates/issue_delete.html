@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Issue{% endblock %}
+
+{% block content %}
+    <div class="alert alert-warning" role="alert">
+        <span>Are you sure want to delete Issue "<strong>{{ issue }}</strong>" ?</span>
+    </div>
+    <form method="POST" action="{% url 'issue_delete' issue.pk %}" class="text-center">
+        {% csrf_token %}
+        <a href="{% url "issue_detail" issue.pk %}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+
+{% endblock %}

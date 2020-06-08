@@ -2,12 +2,16 @@
 
 {% block content %}
     <div class="card">
-        <div class="card-body">
+        <div class="card-body border-bottom">
             <h4 class="card-title">{{ issue.summary }}</h4>
             <p class="card-text">{{ issue.description }}</p>
             <small class="text-muted">{{ issue.created_at|date:'d.m.Y' }}</small>
             <span class="badge badge-secondary">{{ issue.type }}</span>
             <span class="badge badge-secondary">{{ issue.status }}</span>
+        </div>
+        <div class="card-body">
+            <a href="{% url 'issue_edit' issue.pk %}" class="btn btn-outline-warning">Edit</a>
+            <a href="{% url 'issue_delete' issue.pk %}" class="btn btn-outline-danger">Delete</a>
         </div>
     </div>
 {% endblock %}
