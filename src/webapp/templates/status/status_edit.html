@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit status {% endblock %}
+
+{% block content %}
+    <h1>Edit status</h1>
+    <form action="{% url 'status_edit' status.pk %}" method="post" novalidate>
+        {% include 'partial/form.html' %}
+    </form>
+{% endblock %}

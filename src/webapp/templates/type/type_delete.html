@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete type{% endblock %}
+
+{% block content %}
+    <div class="alert alert-warning" role="alert">
+        <span>Are you sure want to delete type "<strong>{{ type }}</strong>" ?</span>
+    </div>
+    <form method="POST" action="{% url 'type_delete' type.pk %}" class="text-center">
+        {% csrf_token %}
+        <a href="{% url "types" %}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+
+{% endblock %}

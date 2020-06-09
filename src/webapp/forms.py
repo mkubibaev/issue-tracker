@@ -9,3 +9,11 @@ class IssueForm(forms.Form):
     description = forms.CharField(max_length=200, required=False, label='Description', widget=widgets.Textarea)
     status = forms.ModelChoiceField(queryset=Status.objects.all(), required=True, label='Status', empty_label=None)
     type = forms.ModelChoiceField(queryset=Type.objects.all(), required=True, label='Type', empty_label=None)
+
+
+class StatusForm(forms.Form):
+    label = forms.CharField(max_length=40, required=True, label='Status')
+
+
+class TypeForm(forms.Form):
+    label = forms.CharField(max_length=40, required=True, label='Type')

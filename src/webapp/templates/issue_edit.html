@@ -5,6 +5,6 @@
 {% block content %}
     <h1>Edit Issue</h1>
     <form action="{% url 'issue_edit' issue.pk %}" method="post" novalidate>
-        {% include 'partial/issue_add_update_form.html' %}
+        {% include 'partial/form.html' %}
     </form>
 {% endblock %}

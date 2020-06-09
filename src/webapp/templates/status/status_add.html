@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Add status {% endblock %}
+
+{% block content %}
+    <h1>Add status</h1>
+    <form action="{% url 'status_add' %}" method="post" novalidate>
+        {% include 'partial/form.html' %}
+    </form>
+{% endblock %}

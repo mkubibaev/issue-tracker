@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit type {% endblock %}
+
+{% block content %}
+    <h1>Edit type</h1>
+    <form action="{% url 'type_edit' type.pk %}" method="post" novalidate>
+        {% include 'partial/form.html' %}
+    </form>
+{% endblock %}
