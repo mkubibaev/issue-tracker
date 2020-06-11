@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView, ListView
+from django.urls import reverse
+from django.views.generic import View, ListView, DetailView, CreateView
 
 from webapp.forms import IssueForm
 from webapp.models import Issue
@@ -10,37 +11,23 @@ class IssueListView(ListView):
     model = Issue
     context_object_name = 'issues'
     ordering = ['-created_at']
-    paginate_by = 2
+    paginate_by = 3
     paginate_orphans = 1
 
 
-class IssueDetailView(TemplateView):
+class IssueDetailView(DetailView):
     template_name = 'issue/issue_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        issue_pk = kwargs.get('pk')
-        context['issue'] = get_object_or_404(Issue, pk=issue_pk)
-        return context
+    model = Issue
+    pk_url_kwarg = 'pk'
 
 
-class IssueCreateView(View):
-    def get(self, request, *args, **kwargs):
-        form = IssueForm()
-        return render(request, 'issue/issue_add.html', {'form': form})
+class IssueCreateView(CreateView):
+    template_name = 'issue/issue_add.html'
+    model = Issue
+    form_class = IssueForm
 
-    def post(self, request, *args, **kwargs):
-        form = IssueForm(data=request.POST)
-        if form.is_valid():
-            issue = Issue.objects.create(
-                summary=form.cleaned_data['summary'],
-                description=form.cleaned_data['description'],
-                type=form.cleaned_data['type'],
-                status=form.cleaned_data['status'],
-            )
-            return redirect('issue_detail', pk=issue.pk)
-        else:
-            return render(request, 'issue/issue_add.html', {'form': form})
+    def get_success_url(self):
+        return reverse('issue_detail', kwargs={'pk': self.object.pk})
 
 
 class IssueEditView(View):
