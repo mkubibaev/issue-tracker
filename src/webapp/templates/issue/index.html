@@ -13,5 +13,9 @@
                 <span class="badge badge-secondary">{{ issue.status }}</span>
             </a>
         {% endfor %}
+
+        {% if is_paginated %}
+            {% include 'partial/pagintaion.html' %}
+        {% endif %}
     </div>
 {% endblock %}
