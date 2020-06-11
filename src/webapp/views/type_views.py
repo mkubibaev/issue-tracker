@@ -1,19 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.views.generic import View, TemplateView, CreateView
+from django.views.generic import View, CreateView, ListView
 
 from webapp.forms import TypeForm
 from webapp.models import Type
 
 
-class TypeListView(TemplateView):
+class TypeListView(ListView):
     template_name = 'type/type_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        types = Type.objects.all()
-        context['types'] = types
-        return context
+    model = Type
+    context_object_name = 'types'
 
 
 class TypeAddView(CreateView):
