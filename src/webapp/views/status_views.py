@@ -1,51 +1,35 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
-from django.views.generic import View, CreateView, ListView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from webapp.forms import StatusForm
 from webapp.models import Status
 
 
 class StatusListView(ListView):
-    template_name = 'status/status_list.html'
     model = Status
+    template_name = 'status/status_list.html'
     context_object_name = 'statuses'
 
 
 class StatusAddView(CreateView):
-    template_name = 'status/status_add.html'
     model = Status
+    template_name = 'status/status_add.html'
     form_class = StatusForm
 
     def get_success_url(self):
         return reverse('statuses')
 
 
-class StatusEditView(View):
-    def get(self, request, *args, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs.get('pk'))
-        form = StatusForm(data={
-            'label': status.label
-        })
-        return render(request, 'status/status_edit.html', {'form': form, 'status': status})
+class StatusEditView(UpdateView):
+    model = Status
+    template_name = 'status/status_edit.html'
+    form_class = StatusForm
 
-    def post(self, request, *args, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs.get('pk'))
-        form = StatusForm(data=request.POST)
-        if form.is_valid():
-            status.label = form.cleaned_data['label']
-            status.save()
-            return redirect('statuses')
-        else:
-            return render(request, 'status/status_edit.html', {'form': form})
+    def get_success_url(self):
+        return reverse('statuses')
 
 
-class StatusDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs.get('pk'))
-        return render(request, 'status/status_delete.html', {'status': status})
-
-    def post(self, request, *args, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs.get('pk'))
-        status.delete()
-        return redirect('statuses')
+class StatusDeleteView(DeleteView):
+    model = Status
+    template_name = 'status/status_delete.html'
+    success_url = reverse_lazy('statuses')

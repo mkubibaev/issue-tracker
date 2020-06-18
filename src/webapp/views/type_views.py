@@ -1,6 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
-from django.views.generic import View, CreateView, ListView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from webapp.forms import TypeForm
 from webapp.models import Type
@@ -21,31 +20,16 @@ class TypeAddView(CreateView):
         return reverse('types')
 
 
-class TypeEditView(View):
-    def get(self, request, *args, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs.get('pk'))
-        form = TypeForm(data={
-            'label': type.label
-        })
-        return render(request, 'type/type_edit.html', {'form': form, 'type': type})
+class TypeEditView(UpdateView):
+    model = Type
+    template_name = 'type/type_edit.html'
+    form_class = TypeForm
 
-    def post(self, request, *args, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs.get('pk'))
-        form = TypeForm(data=request.POST)
-        if form.is_valid():
-            type.label = form.cleaned_data['label']
-            type.save()
-            return redirect('types')
-        else:
-            return render(request, 'type/type_edit.html', {'form': form})
+    def get_success_url(self):
+        return reverse('types')
 
 
-class TypeDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs.get('pk'))
-        return render(request, 'type/type_delete.html', {'type': type})
-
-    def post(self, request, *args, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs.get('pk'))
-        type.delete()
-        return redirect('types')
+class TypeDeleteView(DeleteView):
+    model = Type
+    template_name = 'type/type_delete.html'
+    success_url = reverse_lazy('types')
