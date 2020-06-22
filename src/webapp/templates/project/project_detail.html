@@ -3,15 +3,33 @@
 {% block title %} {{ project.title }} {% endblock %}
 
 {% block content %}
-     <div class="card">
+    <div class="card mb-3">
         <div class="card-body border-bottom">
-            <h4 class="card-title">{{ project.title }}</h4>
+            <h3 class="card-title">{{ project.title }}</h3>
             <p class="card-text">{{ project.description }}</p>
             <small class="text-muted">{{ issue.created_at|date:'d.m.Y' }}</small>
         </div>
         <div class="card-body">
             <a href="{% url 'project_edit' project.pk %}" class="btn btn-outline-warning">Edit</a>
             <a href="{% url 'project_delete' project.pk %}" class="btn btn-outline-danger">Delete</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="card-title">Issues:</h4>
+                <a href="{% url 'issue_add' project.pk %}" class="btn btn-outline-info">Add issue</a>
+            </div>
+            <div class="list-group">
+                {% for issue in issues %}
+                    <a href="{% url 'issue_detail' issue.pk %}" class="list-group-item list-group-item-action">
+                        {{ issue.summary }}
+                    </a>
+                {% empty %}
+                    <span class="disabled">No issues yet.</span>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -17,6 +17,13 @@ class ProjectDetailView(DetailView):
     template_name = 'project/project_detail.html'
     pk_url_kwarg = 'pk'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project = self.object
+        issues = project.issues.order_by('-created_at')
+        context['issues'] = issues
+        return context
+
 
 class ProjectAddView(CreateView):
     model = Project
