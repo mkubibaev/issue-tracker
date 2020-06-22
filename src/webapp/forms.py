@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import widgets
 
-from webapp.models import Status, Type, Issue
+from webapp.models import Status, Type, Issue, Project
 
 
 class IssueForm(forms.ModelForm):
@@ -20,3 +20,9 @@ class TypeForm(forms.ModelForm):
     class Meta:
         model = Type
         fields = ['label']
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['title', 'description']

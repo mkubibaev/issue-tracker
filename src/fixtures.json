@@ -4,9 +4,11 @@
   "pk": 1,
   "fields": {
     "summary": "Products list on home page",
-    "description": "",
-    "status": 1,
-    "type": 1
+    "description": "wrq werqw erqw erqw erqw erq w",
+    "created_at": "2020-01-01T00:00:00Z",
+    "status": 2,
+    "type": 1,
+    "project": 1
   }
 },
 {
@@ -14,30 +16,75 @@
   "pk": 2,
   "fields": {
     "summary": "User cart",
-    "description": "",
+    "description": "qwerq werqwerqw eqrwe",
+    "created_at": "2020-01-01T00:00:00Z",
     "status": 1,
-    "type": 1
+    "type": 2,
+    "project": 1
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 8,
+  "fields": {
+    "summary": "lesson 51",
+    "description": "qwerq we qwer qwerqwer qwer qwe",
+    "created_at": "2020-06-09T04:09:08.530Z",
+    "status": 1,
+    "type": 1,
+    "project": 1
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 9,
+  "fields": {
+    "summary": "wqerqwer",
+    "description": "werqwer",
+    "created_at": "2020-06-09T10:36:22.393Z",
+    "status": 1,
+    "type": 6,
+    "project": 1
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 13,
+  "fields": {
+    "summary": "by milk",
+    "description": "qwer qwerq werqwer",
+    "created_at": "2020-06-11T18:48:16.003Z",
+    "status": 1,
+    "type": 1,
+    "project": 1
   }
 },
 {
   "model": "webapp.status",
   "pk": 1,
   "fields": {
-    "label": "new"
+    "label": "New"
   }
 },
 {
   "model": "webapp.status",
   "pk": 2,
   "fields": {
-    "label": "in_progress"
+    "label": "In progress"
   }
 },
 {
   "model": "webapp.status",
   "pk": 3,
   "fields": {
-    "label": "done"
+    "label": "Done"
+  }
+},
+{
+  "model": "webapp.status",
+  "pk": 7,
+  "fields": {
+    "label": "Pause"
   }
 },
 {
@@ -59,6 +106,23 @@
   "pk": 3,
   "fields": {
     "label": "bug"
+  }
+},
+{
+  "model": "webapp.type",
+  "pk": 6,
+  "fields": {
+    "label": "wqerqwer"
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 1,
+  "fields": {
+    "title": "Project1",
+    "description": "description for project1",
+    "created_at": "2020-06-09T04:09:08.530Z",
+    "updated_at": "2020-06-09T04:09:08.530Z"
   }
 },
 {

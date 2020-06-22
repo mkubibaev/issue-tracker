@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Project {% endblock %}
+
+{% block content %}
+    <h1>Add Project</h1>
+    <form method="post" action="{% url 'project_add' %}" novalidate>
+        {% include 'partial/form.html' %}
+    </form>
+{% endblock %}
