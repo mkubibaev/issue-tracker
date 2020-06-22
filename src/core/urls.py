@@ -19,7 +19,7 @@ from django.urls import path
 from webapp.views import IssueListView, IssueDetailView, IssueCreateView, IssueEditView, IssueDeleteView, \
     StatusListView, StatusEditView, StatusAddView, StatusDeleteView, \
     TypeListView, TypeEditView, TypeAddView, TypeDeleteView, \
-    ProjectListView, ProjectAddView, ProjectDetailView
+    ProjectListView, ProjectAddView, ProjectDetailView, ProjectEditView, ProjectDeleteView
 
 urlpatterns = [
     path('', IssueListView.as_view(), name='index'),
@@ -38,6 +38,8 @@ urlpatterns = [
     path('projects', ProjectListView.as_view(), name='projects'),
     path('projects/add', ProjectAddView.as_view(), name='project_add'),
     path('projects/<int:pk>', ProjectDetailView.as_view(), name='project_detail'),
+    path('projects/<int:pk>/edit', ProjectEditView.as_view(), name='project_edit'),
+    path('projects/<int:pk>/delete', ProjectDeleteView.as_view(), name='project_delete'),
 
     path('admin/', admin.site.urls),
 ]
