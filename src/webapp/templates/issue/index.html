@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h3 class="mb-3">All issues</h3>
+    {% include 'partial/simple_search.html' %}
+    <h3 class="mb-3">Issues</h3>
     <div class="list-group">
         {% for issue in issues %}
             <a href="{% url 'issue_detail' issue.pk %}" class="list-group-item list-group-item-action">
