@@ -6,7 +6,8 @@ Python/Django practice
 
 - Install python (brew/apt install python) /pip included
 - Install virtualenv `pip3 install virtualenv`
-- Run `pip install` in project root
+- Run `pip install -r requirements` in project root
+- Run `./manage.py loaddata fixtures.json` for load initial data from file
 - Run `src/manage.py runserver` for run project or setup IDE run config
 
 ### Commands for start new project
